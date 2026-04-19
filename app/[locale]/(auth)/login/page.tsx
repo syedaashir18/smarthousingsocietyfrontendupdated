@@ -1,0 +1,159 @@
+"use client";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useState, useMemo } from "react";
+import { GoogleLogin } from "@react-oauth/google";
+import { toast } from "sonner";
+import { createLoginSchema, type LoginFormValues } from "@/validations/authValidation";
+import { BaseForm } from "@/components/form/base-form";
+import type { FormField } from "@/components/form/types/form";
+import { useAppDispatch } from "@/redux/store";
+import { useCurrentLocale } from "@/hooks/use-current-locale";
+import { googleLogin, loginUser } from "@/redux/slices/login-slice";
+
+export default function LoginPage() {
+  const t = useTranslations("auth.login");
+  const vt = useTranslations("auth.validation");
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const locale = useCurrentLocale();
+
+  const [isLoading, setIsLoading] = useState(false); // classic login
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false); // google login
+  const loginSchema = useMemo(() => createLoginSchema(vt), [vt]);
+  async function handleGoogleSuccess(credentialResponse: any) {
+    if (!credentialResponse?.credential) return; // defensive
+
+    setIsGoogleLoading(true);
+    try {
+      await dispatch(googleLogin({ idToken: credentialResponse.credential })).unwrap();
+
+      toast.success(t("success") || "Logged in with Google");
+      router.push(`/${locale}/`);
+    } catch (err: any) {
+      const msg = typeof err === "string" ? err : err?.message || "Google login failed";
+      toast.error("Google Login Failed", { description: msg });
+    } finally {
+      setIsGoogleLoading(false);
+    }
+  }
+
+  function handleGoogleError() {
+    setIsGoogleLoading(false);
+    toast.error("Google Login Failed", {
+      description: "Failed to authenticate with Google",
+    });
+  }
+
+  async function onSubmit(values: LoginFormValues) {
+    setIsLoading(true);
+    try {
+      await dispatch(loginUser({ email: values.email, password: values.password })).unwrap();
+
+      toast.success(t("success") || "Logged in");
+      router.push(`/${locale}/`);
+    } catch (err: any) {
+      const msg = typeof err === "string" ? err : err?.message || "Login failed";
+      toast.error(t("error") || "Login failed", { description: msg });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  const formFields: FormField[] = [
+    {
+      id: "email",
+      name: "email",
+      label: t("emailLabel"),
+      type: "email",
+      placeholder: t("emailLabel"),
+      required: true,
+      className: "text-sm md:text-base",
+    },
+    {
+      id: "password",
+      name: "password",
+      label: t("passwordLabel"),
+      type: "password",
+      placeholder: t("passwordLabel"),
+      required: true,
+      className: "text-sm md:text-base",
+    },
+  ];
+
+  return (
+    <div className="relative space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{t("title")}</h1>
+        <p className="text-muted-foreground text-sm md:text-base">{t("subtitle")}</p>
+      </div>
+
+      <div className="w-full flex justify-center px-4 sm:px-0">
+        <div className="w-full sm:w-96 max-w-full">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+            size="large"
+          />
+        </div>
+      </div>
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <BaseForm
+          fields={formFields}
+          onSubmit={onSubmit}
+          defaultValues={{ email: "", password: "" }}
+          validationSchema={loginSchema}
+          submitText={t("submitButton")}
+          renderSubmitButton={({ isSubmitting }) => (
+            <button
+              type="submit"
+              className="w-full cursor-pointer text-sm md:text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              disabled={isLoading || isSubmitting || isGoogleLoading} // block while any flow is active
+            >
+              {isLoading || isSubmitting ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
+                  {t("submittingButton")}
+                </div>
+              ) : (
+                t("submitButton")
+              )}
+            </button>
+          )}
+        />
+
+        <div className="text-right">
+          <Link
+            href={`/${locale}/forgot`}
+            className="text-sm md:text-base text-muted-foreground underline hover:text-primary cursor-pointer transition-colors"
+          >
+            {t("forgotLink")}
+          </Link>
+        </div>
+      </div>
+
+      <div className="text-center text-sm md:text-base text-muted-foreground">
+        <p>
+          {t("noAccountText")}{" "}
+          <Link
+            href={`/${locale}/signup`}
+            className="underline hover:text-primary cursor-pointer transition-colors font-medium"
+          >
+            {t("signupLink")}
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}

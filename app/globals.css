@@ -1,0 +1,376 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+.ocean {
+  --background: oklch(0.98 0.01 210);
+  --foreground: oklch(0.18 0.03 210);
+  --card: oklch(0.98 0.01 210);
+  --card-foreground: oklch(0.18 0.03 210);
+  --popover: oklch(0.99 0.01 210);
+  --popover-foreground: oklch(0.18 0.03 210);
+  --primary: oklch(0.58 0.15 210);
+  --primary-foreground: oklch(0.99 0.01 210);
+  --secondary: oklch(0.94 0.03 210);
+  --secondary-foreground: oklch(0.18 0.03 210);
+  --muted: oklch(0.94 0.03 210);
+  --muted-foreground: oklch(0.4 0.05 210);
+  --accent: oklch(0.9 0.05 200);
+  --accent-foreground: oklch(0.18 0.03 210);
+  --destructive: oklch(0.62 0.2 29);
+  --destructive-foreground: oklch(0.99 0.01 210);
+  --border: oklch(0.9 0.02 210);
+  --input: oklch(0.9 0.02 210);
+  --ring: oklch(0.6 0.09 210);
+  --chart-1: oklch(0.62 0.17 210);
+  --chart-2: oklch(0.64 0.12 190);
+  --chart-3: oklch(0.45 0.08 230);
+  --chart-4: oklch(0.8 0.14 165);
+  --chart-5: oklch(0.74 0.15 250);
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-urdu: var(--font-urdu);
+  --font-arabic: var(--font-arabic);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  html[dir="rtl"] body {
+    font-family:
+      var(--font-urdu), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Arial Unicode MS",
+      "Tahoma", sans-serif;
+    font-weight: 400;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  html[dir="rtl"][lang="ar"] body {
+    font-family: var(--font-arabic), "Noto Naskh Arabic", "Arial", "Tahoma", sans-serif;
+    font-weight: 400;
+    text-align: right;
+    line-height: 1.8;
+  }
+}
+
+/* Global custom scrollbar styles */
+/* WebKit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+  border: 2px solid var(--muted);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ring);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--muted);
+}
+
+/* RTL Support for Urdu Language */
+[dir="rtl"] {
+  --tw-rotate: -180deg;
+}
+
+[dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .rtl\:divide-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 1;
+}
+
+/* Font support for Arabic/Urdu text */
+.font-urdu {
+  font-family:
+    var(--font-urdu), "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Arial Unicode MS", "Tahoma",
+    sans-serif;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic), "Noto Naskh Arabic", "Arial", "Tahoma", sans-serif;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* Better RTL support for dropdowns and modals */
+[dir="rtl"] .dropdown-content {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .tooltip {
+  right: 0;
+  left: auto;
+}
+
+/* RTL support for navigation */
+[dir="rtl"] .nav-item {
+  text-align: right;
+}
+
+/* RTL support for forms */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL support for buttons with icons */
+[dir="rtl"] .btn-with-icon {
+  flex-direction: row-reverse;
+}
+
+/* RTL improvements for dashboard layout */
+[dir="rtl"] .dashboard-card {
+  text-align: right;
+}
+
+[dir="rtl"] .sidebar-navigation {
+  direction: rtl;
+}
+
+/* RTL improvements for mobile navigation */
+[dir="rtl"] .mobile-nav-item {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL improvements for responsive design */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-sidebar {
+    right: 0;
+    left: auto;
+  }
+}
+
+/* Enhanced RTL spacing for Urdu text */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  text-align: right;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+[dir="rtl"] p {
+  text-align: right;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+/* Better spacing for RTL cards and components */
+[dir="rtl"] .card-header {
+  text-align: right;
+}
+
+[dir="rtl"] .card-title {
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+[dir="rtl"] .card-description {
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* RTL button spacing */
+[dir="rtl"] .btn {
+  direction: rtl;
+}
+
+[dir="rtl"] .btn svg {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* RTL flex improvements */
+[dir="rtl"] .flex-rtl {
+  flex-direction: row-reverse;
+}
+
+/* RTL table improvements */
+[dir="rtl"] table {
+  direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* Scroll to Top Button Styles */
+.scroll-to-top-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-to-top-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+
+.scroll-to-top-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+
+/* RTL support for scroll-to-top button */
+[dir="rtl"] .scroll-to-top {
+  left: 2rem;
+  right: auto;
+}
