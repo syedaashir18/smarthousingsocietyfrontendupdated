@@ -4,21 +4,24 @@ import { type PropsWithChildren } from "react";
 
 export default function AuthLayout({ children }: PropsWithChildren) {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Left side - Image (hidden on mobile) */}
-      <div className="relative hidden md:block w-full md:w-[70%] h-screen">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image Container */}
+      <div className="absolute inset-0 z-0">
         <Image
-          src="https://res.cloudinary.com/dzr3drmyk/image/upload/v1762353672/Gemini_Generated_Image_o7dttoo7dttoo7dt_o5qcky.png"
-          alt="Next.js Enterprise Boilerplate"
+          src="/images/signup-image.png"
+          alt="Background"
           fill
           priority
           className="object-cover"
-          sizes="70vw"
+          sizes="100vw"
         />
+        {/* Overlay for better readability */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
       </div>
-      {/* Right side - Auth form */}
-      <div className="flex items-center justify-center p-6 w-full md:w-[30%] min-h-screen">
-        <div className="w-full max-w-sm space-y-6">{children}</div>
+
+      {/* Auth form container */}
+      <div className="relative z-10 w-full max-w-md p-6 mx-4">
+        {children}
       </div>
     </div>
   );

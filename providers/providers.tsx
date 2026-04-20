@@ -16,7 +16,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 export default function Providers({ children }: PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient());
   const fallback = useMemo(
-    () => <Loader isLoading={true} text="Next Boilerplate" variant="default" size="md" />,
+    () => <Loader isLoading={true} text="Smart Housing" variant="default" size="md" />,
     []
   );
 

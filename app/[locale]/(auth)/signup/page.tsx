@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -108,9 +109,19 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="relative space-y-6">
-      <div className="space-y-2">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{t("title")}</h1>
+    <div className="relative space-y-6 glass-effect p-8 rounded-2xl shadow-2xl">
+      <div className="flex justify-center mb-2">
+        <Image
+          src="/logo.png"
+          alt="Vital-One Logo"
+          width={150}
+          height={150}
+          className="object-contain"
+          priority
+        />
+      </div>
+      <div className="space-y-2 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-muted-foreground text-sm md:text-base">{t("subtitle")}</p>
       </div>
       {/* Google Signup Button - Uses Google Identity Services */}
