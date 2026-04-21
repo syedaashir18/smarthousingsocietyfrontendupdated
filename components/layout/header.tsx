@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { MenuIcon, CloseIcon } from "@/lib/icons/icons";
 import { ThemeToggle } from "./theme-toggle";
 import { UserProfile } from "./user-profile";
@@ -20,9 +20,20 @@ export function Header({ className }: { className?: string }) {
   const { config, state, isMobile, responsive, toggleMobileMenu, closeMobileMenu } = useLayout();
   const { isAuthenticated, isLoading } = useAuth();
   const t = useTranslations("layout.header");
+  const pathname = usePathname();
 
   // Responsive behavior
   const { isTablet, deviceType, width } = responsive;
+
+  const getDynamicTitle = () => {
+    if (!pathname || pathname === "/" || pathname === "/dashboard") return t("logoText");
+    const segment = pathname.split("/")[1];
+    if (segment) {
+      const title = segment.replace(/-/g, " ");
+      return title.charAt(0).toUpperCase() + title.slice(1);
+    }
+    return t("logoText");
+  };
 
   const [hasCookieUser, setHasCookieUser] = useState<boolean>(
     () =>
@@ -123,7 +134,7 @@ export function Header({ className }: { className?: string }) {
                   width >= 400 && width < 640 ? "truncate max-w-[120px]" : ""
                 )}
               >
-                {t("logoText")}
+                {getDynamicTitle()}
               </span>
             </Link>
           </div>

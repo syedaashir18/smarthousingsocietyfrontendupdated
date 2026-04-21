@@ -27,6 +27,7 @@ const layout = {
       { href: "/", title: "ہوم" },
       { href: "/dashboard", title: "ڈیش بورڈ" },
       { href: "/users", title: "صارفین" },
+      { href: "/chat", title: "چیٹ" },
     ],
   },
 

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
@@ -81,14 +81,28 @@ export function Sidebar({ className }: SidebarProps) {
       >
         {!isCollapsed && (
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-md bg-primary" />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={50}
+              height={50}
+              className="rounded-md object-contain"
+            />
             <span className={cn("font-semibold text-md", isRTL ? "mt-1" : "text-left")}>
               {t("navigationLabel")}
             </span>
           </div>
         )}
 
-        {isCollapsed && <div className="w-8 h-8 rounded-md bg-primary mx-auto" />}
+        {isCollapsed && (
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={32}
+            height={32}
+            className="rounded-md object-contain mx-auto"
+          />
+        )}
 
         {/* Collapse/Expand Button - Only show on desktop/large-desktop (not on tablets) */}
         {(isDesktop || isLargeDesktop) && (
@@ -114,7 +128,7 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Navigation Items */}
       <nav className="flex-1 p-2 space-y-1 overflow-y-auto overflow-x-hidden">
         {navItems.map((item: any) => {
-          const isActive = pathname === item.href;
+          const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
           const Icon = pickIcon(item.title);
 
           return (
@@ -129,7 +143,7 @@ export function Sidebar({ className }: SidebarProps) {
                 isTablet ? "text-xs" : "text-sm",
                 {
                   "bg-accent text-accent-foreground shadow-sm": isActive,
-                  "text-muted-foreground hover:text-foreground": !isActive,
+                  "text-muted-foreground": !isActive,
                   // Collapsed styles
                   "justify-center p-3 w-12 h-12 mx-auto": isCollapsed,
                   // Expanded styles with responsive padding
