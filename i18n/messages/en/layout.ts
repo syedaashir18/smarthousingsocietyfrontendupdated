@@ -52,6 +52,7 @@ const layout = {
       { href: "/dashboard", title: "Dashboard" },
       { href: "/users", title: "Users" },
       { href: "/chat", title: "Chats" },
+      { href: "/voting", title: "Voting System" },
     ],
   },
 
