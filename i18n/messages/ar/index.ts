@@ -11,6 +11,7 @@ import metadata from "./metadata";
 import navigation from "./navigation";
 import time from "./time";
 import auth from "./auth";
+import chat from "./chat";
 
 const messages = {
   auth,
@@ -26,6 +27,7 @@ const messages = {
   metadata,
   navigation,
   time,
+  chat,
 } as const;
 
 export default messages;

@@ -27,6 +27,7 @@ const layout = {
       { href: "/", title: "الرئيسية" },
       { href: "/dashboard", title: "لوحة التحكم" },
       { href: "/users", title: "المستخدمون" },
+      { href: "/chat", title: "دردشة" },
     ],
   },
 

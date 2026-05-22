@@ -11,6 +11,9 @@ import common from "./common";
 import metadata from "./metadata";
 import navigation from "./navigation";
 import time from "./time";
+import chat from "./chat";
+import voting from "./voting";
+import complaints from "./complaints";
 
 const messages = {
   auth,
@@ -26,6 +29,9 @@ const messages = {
   metadata,
   navigation,
   time,
+  chat,
+  voting,
+  complaints,
 } as const;
 
 export default messages;

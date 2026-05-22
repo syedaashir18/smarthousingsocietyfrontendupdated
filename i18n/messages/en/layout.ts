@@ -32,7 +32,7 @@ const layout = {
   },
 
   sidebar: {
-    navigationLabel: "Next Boiler",
+    navigationLabel: "Smart Hosuing",
     collapseLabel: "Collapse sidebar",
     expandLabel: "Expand sidebar",
     logout: "Logout",
@@ -51,6 +51,9 @@ const layout = {
       { href: "/", title: "Home" },
       { href: "/dashboard", title: "Dashboard" },
       { href: "/users", title: "Users" },
+      { href: "/chat", title: "Chats" },
+      { href: "/voting", title: "Voting System" },
+      { href: "/complaints", title: "Complaint System" },
     ],
   },
 
@@ -61,7 +64,7 @@ const layout = {
     termsOfService: "Terms of Service",
     contact: "Contact",
 
-    companyName: "Next Boiler",
+    companyName: "Smart Hosuing",
     companyDescription:
       "We are a modern SaaS platform empowering businesses to work smarter, faster, and better with technology.",
 
