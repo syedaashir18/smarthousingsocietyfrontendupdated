@@ -84,7 +84,7 @@ export default function LoginPage() {
   ];
 
   return (
-    <div className="relative space-y-6 glass-effect p-8 rounded-2xl shadow-2xl">
+    <div className="relative space-y-6">
       <div className="flex justify-center mb-2">
         <Image
           src="/logo.png"
