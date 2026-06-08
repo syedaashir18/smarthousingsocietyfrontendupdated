@@ -54,7 +54,7 @@ export function Sidebar({ className }: SidebarProps) {
       // Remove auth-related cookies (now via utility)
       removeAuthCookies();
       toast.success("Logged out successfully");
-      router.push("/login");
+      window.location.href = "/login";
     } catch (error) {
       toast.error("Logout failed");
     } finally {
