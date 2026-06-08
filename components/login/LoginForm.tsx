@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -115,7 +116,7 @@ function LoginPage() {
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden bg-green-dark lg:flex">
         {/* Background image with overlay */}
         <img
-          src={smartCityImg}
+          src={smartCityImg.src}
           alt="Smart city"
           className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
