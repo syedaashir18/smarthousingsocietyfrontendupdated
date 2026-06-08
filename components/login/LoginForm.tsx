@@ -1,20 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Shield, Home, Users, Leaf, Eye, EyeOff } from "lucide-react";
 import smartCityImg from "@/assets/smart-city.jpg";
-
-export const Route = createFileRoute("/login")({
-  head: () => ({
-    meta: [
-      { title: "Sign In — Smart Housing Society" },
-      { name: "description", content: "Sign in to your Smart Housing Society account." },
-    ],
-  }),
-  component: LoginPage,
-});
 
 function SocietyLogo({ className = "" }: { className?: string }) {
   return (
